@@ -24,9 +24,15 @@ WHERE population &gt; 100
  FROM population_years
  WHERE country like '%Islands%';
  
+-- The Indonesian population growth shown in two records
  SELECT country, population, year
  FROM population_years
  WHERE country = 'Indonesia'
   AND (year = 2010 OR year = 2000);
+ 
+-- The Indonesian population growth calculated in one query 
+  SELECT (SELECT population
+   FROM population_years WHERE country = 'Indonesia' AND year = 2010)
+   - population AS 'growth' FROM population_years WHERE country = 'Indonesia' AND year = 2000;
  
 </sql><current_tab id="0"/></tab_sql></sqlb_project>
